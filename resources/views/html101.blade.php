@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 @extends('template.default')
 
 @section('content')
@@ -6,6 +7,8 @@
  <form style=max-width:600;margin-top:20px;>
 
 =======
+=======
+>>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,6 +29,9 @@
         <h1>Workshop #HTML - FORM</h1>
 
             <form style=max-width:600;margin-top:20px;>
+<<<<<<< HEAD
+>>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
+=======
 >>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
 
             <div class=form-section>
@@ -88,7 +94,11 @@
                 </div>
             </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+                        
+>>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
 =======
                         
 >>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
@@ -111,6 +121,7 @@
         <div class="form-section">
             <div class="label-col">
             </div><div class="input-col">
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <button type=reset class="btn  btn-outline-secondary" type="reset" >Reset
                 <button type=submut  class=btn-outline-secondary btn onclick="clickMe()" type="button">Submit
@@ -140,6 +151,8 @@
 @endpush
 
 =======
+=======
+>>>>>>> 699c30af4953ad1799cadd9f141093423115fb00
                 <button type=reset class="btn  btn-outline-secondary" >Reset
                 <button type=submut  class=btn-outline-secondary btn>Submit
             </div>
