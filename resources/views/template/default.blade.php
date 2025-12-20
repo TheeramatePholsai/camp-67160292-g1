@@ -110,7 +110,8 @@
     </head>
     <body>
         <div class="container" style="padding-top: 50px;">
-            <h1>File default</h1>
+            <h1>Form Defult Template</h1>
+            <h1>@yield('header')</h1>
             @yield('content')
         </div>
         @stack('scripts')

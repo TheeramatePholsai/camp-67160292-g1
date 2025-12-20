@@ -1,14 +1,17 @@
 @extends('template.default')
 
-@section('title' , 'Worksshop FORM')
+@section('title', 'Workshop FORM')
+@section('header' , 'Worksshop #HTML - FORM')
 @section('content')
-<h1>Workshop #HTML - FORM</h1>
-<form>
+<h1></h1>
+<form method="POST" action="{{ route('html101.store') }}" enctype="multipart/form-data">
+                @csrf
                 <!-- ชื่อ -->
                 <div class="form-section">
                     <div class="label-col"><label>ชื่อ</label></div>
                     <div class="input-col">
-                        <input id ="fname"  class="form-control">
+                        <input id="fname" name="fname" class="form-control" value="{{ old('fname') }}">
+                        @error('fname') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
@@ -22,7 +25,8 @@
                 <div class="form-section">
                     <div class="label-col"><label>สกุล</label></div>
                     <div class="input-col">
-                        <input id="lname" class="form-control">
+                        <input id="lname" name="lname" class="form-control" value="{{ old('lname') }}">
+                        @error('lname') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
@@ -36,12 +40,13 @@
                 <div class="form-section">
                     <div class="label-col"><label>วัน/เดือน/ปีเกิด</label></div>
                     <div class="input-col">
-                        <input type="date" id="date" class="form-control">
+                        <input type="date" id="date" name="date" class="form-control" value="{{ old('date') }}">
+                        @error('date') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
                         <div class="invalid-feedback">
-                            โปรดระบุวัน/เดือน/ปีเกิด
+                            โปรดระบุ วัน/เดือน/ปีเกิด
                         </div>
                     </div>
                 </div>
@@ -50,7 +55,8 @@
                 <div class="form-section">
                     <div class="label-col"><label>อายุ</label></div>
                     <div class="input-col">
-                        <input id="age" class="form-control">
+                        <input id="age" name="age" class="form-control" value="{{ old('age') }}">
+                        @error('age') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
@@ -66,11 +72,11 @@
                     <div class="input-col">
                         <div class="radio-group">
                             <div class="radio-item">
-                                <input type="radio" id="male" name="gender" value="ชาย">
+                                <input type="radio" id="male" name="gender" value="ชาย" {{ old('gender') == 'ชาย' ? 'checked' : '' }}>
                                 <label for="male">ชาย</label>
                             </div>
                             <div class="radio-item">
-                                <input type="radio" id="female" name="gender" value="หญิง">
+                                <input type="radio" id="female" name="gender" value="หญิง" {{ old('gender') == 'หญิง' ? 'checked' : '' }}>
                                 <label for="female">หญิง</label>
                             </div>
                         </div>
@@ -87,7 +93,8 @@
                 <div class="form-section">
                     <div class="label-col"><label>รูป</label></div>
                     <div class="input-col">
-                        <input type="file" class="form-control" id="photo">
+                        <input type="file" class="form-control" id="photo" name="photo">
+                        @error('photo') <div class="text-danger">{{ $message }}</div> @enderror
                             <div class="valid-feedback">
                                 ถูกต้อง
                             </div>
@@ -101,7 +108,8 @@
                 <div class="form-section">
                     <div class="label-col"><label>ที่อยู่</label></div>
                     <div class="input-col">
-                        <textarea id="address" class="form-control"></textarea>
+                        <textarea id="address" name="address" class="form-control">{{ old('address') }}</textarea>
+                        @error('address') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
@@ -115,15 +123,16 @@
                 <div class="form-section">
                     <div class="label-col"><label>สีที่ชอบ</label></div>
                     <div class="input-col">
-                        <select id="color" class="form-control">
+                        <select id="color" name="color" class="form-control">
                             <option value=""> เลือกสี </option>
-                            <option>สีแดง</option>
-                            <option>สีเขียว</option>
-                            <option>สีน้ำเงิน</option>
-                            <option>สีเหลือง</option>
-                            <option>สีดำ</option>
-                            <option>สีขาว</option>
+                            <option value="สีแดง" {{ old('color') == 'สีแดง' ? 'selected' : '' }}>สีแดง</option>
+                            <option value="สีเขียว" {{ old('color') == 'สีเขียว' ? 'selected' : '' }}>สีเขียว</option>
+                            <option value="สีน้ำเงิน" {{ old('color') == 'สีน้ำเงิน' ? 'selected' : '' }}>สีน้ำเงิน</option>
+                            <option value="สีเหลือง" {{ old('color') == 'สีเหลือง' ? 'selected' : '' }}>สีเหลือง</option>
+                            <option value="สีดำ" {{ old('color') == 'สีดำ' ? 'selected' : '' }}>สีดำ</option>
+                            <option value="สีขาว" {{ old('color') == 'สีขาว' ? 'selected' : '' }}>สีขาว</option>
                         </select>
+                        @error('color') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback">
                             ถูกต้อง
                         </div>
@@ -139,15 +148,15 @@
                     <div class="input-col">
                         <div class="radio-group">
                             <div class="radio-item">
-                                <input type="radio" id="pref1" name="preference" value="1">
+                                <input type="radio" id="pref1" name="preference" value="เพื่อชีวิต" {{ old('preference') == 'เพื่อชีวิต' ? 'checked' : '' }}>
                                 <label for="pref1">เพื่อชีวิต</label>
                             </div>
                             <div class="radio-item">
-                                <input type="radio" id="pref2" name="preference" value="2">
+                                <input type="radio" id="pref2" name="preference" value="ลูกทุ่ง" {{ old('preference') == 'ลูกทุ่ง' ? 'checked' : '' }}>
                                 <label for="pref2">ลูกทุ่ง</label>
                             </div>
                             <div class="radio-item">
-                                <input type="radio" id="pref3" name="preference" value="3">
+                                <input type="radio" id="pref3" name="preference" value="อื่นๆ" {{ old('preference') == 'อื่นๆ' ? 'checked' : '' }}>
                                 <label for="pref3">อื่นๆ</label>
                             </div>
                         </div>
@@ -165,9 +174,10 @@
                     <div class="label-col"></div>
                     <div class="input-col">
                         <div class="checkbox-item">
-                            <input type="checkbox" id="consent">
+                            <input type="checkbox" id="consent" name="consent" value="1" {{ old('consent') ? 'checked' : '' }}>
                             <label for="consent">ยินยอมให้เก็บข้อมูลผล</label>
                         </div>
+                        @error('consent') <div class="text-danger">{{ $message }}</div> @enderror
                         <div class="valid-feedback" id="consent-valid">
                             ถูกต้อง
                         </div>
@@ -183,7 +193,7 @@
                     <div class="input-col">
                         <div class="button-group">
                             <button type="reset" class="btn-light">Reset</button>
-                            <button type="button" class="btn-success" onclick="clickMe()" >Submit</button>
+                            <button type="submit" class="btn-success">Submit</button>
                         </div>
                     </div>
                 </div>
