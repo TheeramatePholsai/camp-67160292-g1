@@ -202,130 +202,149 @@
 @endsection
 
 @push('scripts')
-    <script>
-        let clickMe = function() {
-            let fname = document.getElementById('fname');
-            let lname = document.getElementById('lname');
-            let date = document.getElementById('date');
-            let age = document.getElementById('age');
+   <script>
+    // ฟังก์ชันตรวจสอบความถูกต้องของฟอร์ม
+    function validateForm() {
+        let isValid = true;
 
-            // เพศ
-            const isGenderSelected = male.checked || female.checked;
-            const genderValid = document.getElementById('gender-valid');
-            const genderInvalid = document.getElementById('gender-invalid');
-
-            let photo = document.getElementById('photo');
-            let address = document.getElementById('address');
-            let color = document.getElementById('color');
-
-            // แนวเพลงที่ชอบ
-            const pref1 = document.getElementById('pref1');
-            const pref2 = document.getElementById('pref2');
-            const pref3 = document.getElementById('pref3');
-            const isMusicSelected = pref1.checked || pref2.checked || pref3.checked;
-            const musicValid = document.getElementById('music-valid');
-            const musicInvalid = document.getElementById('music-invalid');
-
-            let consent = document.getElementById('consent');
-            const consentValid = document.getElementById('consent-valid');
-            const consentInvalid = document.getElementById('consent-invalid');
-
-            // fname.value = "from clickMe";
-            // console.log(fname.value);;
-
-            if (fname.value === "") {
-                fname.classList.remove('is-valid');
-                fname.classList.add('is-invalid');
-            }else{
-                fname.classList.remove('is-invalid');
-                fname.classList.add('is-valid');
-
-            }
-            if (lname.value === "") {
-                lname.classList.remove('is-valid');
-                lname.classList.add('is-invalid');
-            }else{
-                lname.classList.remove('is-invalid');
-                lname.classList.add('is-valid');
-
-            }
-
-            if (date.value === "") {
-                date.classList.remove('is-valid');
-                date.classList.add('is-invalid');
-            }else{
-                date.classList.remove('is-invalid');
-                date.classList.add('is-valid');
-
-            }
-
-            if (age.value === "") {
-                age.classList.remove('is-valid');
-                age.classList.add('is-invalid');
-            }else{
-                age.classList.remove('is-invalid');
-                age.classList.add('is-valid');
-
-            }
-
-            if (isGenderSelected) {
-                genderValid.classList.add('d-block');
-                genderInvalid.classList.remove('d-block');
-            } else {
-                genderValid.classList.remove('d-block');
-                genderInvalid.classList.add('d-block');
-            }
-
-            if (photo.files.length === 0) {
-                photo.classList.remove('is-valid');
-                photo.classList.add('is-invalid');
-            } else {
-                photo.classList.remove('is-invalid');
-                photo.classList.add('is-valid');
-            }
-
-            if (address.value === "") {
-                address.classList.remove('is-valid');
-                address.classList.add('is-invalid');
-            } else {
-                address.classList.remove('is-invalid');
-                address.classList.add('is-valid');
-            }
-
-            if (color.value === "") {
-                color.classList.remove('is-valid');
-                color.classList.add('is-invalid');
-             } else {
-                color.classList.remove('is-invalid');
-                color.classList.add('is-valid');
-            }
-
-            if (isMusicSelected) {
-                musicValid.classList.add('d-block');
-                musicInvalid.classList.remove('d-block');
-            } else {
-                musicValid.classList.remove('d-block');
-                musicInvalid.classList.add('d-block');
-            }
-
-            if (consent.checked) {
-                consentValid.classList.add('d-block');
-                consentInvalid.classList.remove('d-block');
-            } else {
-                consentValid.classList.remove('d-block');
-                consentInvalid.classList.add('d-block');
-            }
-
-        }
-        let myfunc =  (callback) =>{
-            callback("in callback");
+        // ชื่อ
+        let fname = document.getElementById('fname');
+        if (fname.value.trim() === "") {
+            fname.classList.remove('is-valid');
+            fname.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            fname.classList.remove('is-invalid');
+            fname.classList.add('is-valid');
         }
 
-        callMe = (param) => {
-            console.log(param);
+        // สกุล
+        let lname = document.getElementById('lname');
+        if (lname.value.trim() === "") {
+            lname.classList.remove('is-valid');
+            lname.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            lname.classList.remove('is-invalid');
+            lname.classList.add('is-valid');
         }
 
-        myfunc(callMe);
+        // วัน/เดือน/ปีเกิด
+        let date = document.getElementById('date');
+        if (date.value === "") {
+            date.classList.remove('is-valid');
+            date.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            date.classList.remove('is-invalid');
+            date.classList.add('is-valid');
+        }
 
-    </script>
+        // อายุ
+        let age = document.getElementById('age');
+        if (age.value.trim() === "") {
+            age.classList.remove('is-valid');
+            age.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            age.classList.remove('is-invalid');
+            age.classList.add('is-valid');
+        }
+
+        // เพศ
+        const male = document.getElementById('male');
+        const female = document.getElementById('female');
+        const isGenderSelected = male.checked || female.checked;
+        const genderValid = document.getElementById('gender-valid');
+        const genderInvalid = document.getElementById('gender-invalid');
+
+        if (isGenderSelected) {
+            genderValid.classList.add('d-block');
+            genderInvalid.classList.remove('d-block');
+        } else {
+            genderValid.classList.remove('d-block');
+            genderInvalid.classList.add('d-block');
+            isValid = false;
+        }
+
+        // รูป
+        let photo = document.getElementById('photo');
+        if (photo.files.length === 0) {
+            photo.classList.remove('is-valid');
+            photo.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            photo.classList.remove('is-invalid');
+            photo.classList.add('is-valid');
+        }
+
+        // ที่อยู่
+        let address = document.getElementById('address');
+        if (address.value.trim() === "") {
+            address.classList.remove('is-valid');
+            address.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            address.classList.remove('is-invalid');
+            address.classList.add('is-valid');
+        }
+
+        // สีที่ชอบ
+        let color = document.getElementById('color');
+        if (color.value === "") {
+            color.classList.remove('is-valid');
+            color.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            color.classList.remove('is-invalid');
+            color.classList.add('is-valid');
+        }
+
+        // แนวเพลงที่ชอบ
+        const pref1 = document.getElementById('pref1');
+        const pref2 = document.getElementById('pref2');
+        const pref3 = document.getElementById('pref3');
+        const isMusicSelected = pref1.checked || pref2.checked || pref3.checked;
+        const musicValid = document.getElementById('music-valid');
+        const musicInvalid = document.getElementById('music-invalid');
+
+        if (isMusicSelected) {
+            musicValid.classList.add('d-block');
+            musicInvalid.classList.remove('d-block');
+        } else {
+            musicValid.classList.remove('d-block');
+            musicInvalid.classList.add('d-block');
+            isValid = false;
+        }
+
+        // ยินยอม
+        let consent = document.getElementById('consent');
+        const consentValid = document.getElementById('consent-valid');
+        const consentInvalid = document.getElementById('consent-invalid');
+
+        if (consent.checked) {
+            consentValid.classList.add('d-block');
+            consentInvalid.classList.remove('d-block');
+        } else {
+            consentValid.classList.remove('d-block');
+            consentInvalid.classList.add('d-block');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // เรียกใช้เมื่อ submit form
+    document.querySelector('form').addEventListener('submit', function(e) {
+        if (!validateForm()) {
+            e.preventDefault(); // หยุดการ submit ถ้าข้อมูลไม่ครบ
+        }
+    });
+
+    // เพิ่ม real-time validation (ถ้าต้องการ)
+    document.getElementById('fname').addEventListener('blur', validateForm);
+    document.getElementById('lname').addEventListener('blur', validateForm);
+    document.getElementById('date').addEventListener('change', validateForm);
+    document.getElementById('age').addEventListener('blur', validateForm);
+</script>
 @endpush

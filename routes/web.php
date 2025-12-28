@@ -19,3 +19,10 @@ Route::post('/calculate', [App\Http\Controllers\MyController::class, 'calculate'
 Route::get('html101/create', [Html101Controller::class, 'create'])->name('html101.create');
 Route::post('html101', [Html101Controller::class, 'store'])->name('html101.store');
 Route::get('html101/view', [Html101Controller::class, 'view'])->name('html101.view');
+
+
+Route::resource('flights', App\Http\Controllers\FlightController::class);
+
+
+
+Route::resource('pokedexs', App\Http\Controllers\PokedexController::class);
